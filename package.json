@@ -1,0 +1,7 @@
+{
+  "name": "before-you-hit-send",
+  "private": true,
+  "description": "Checks a message for rude, insulting, profane or threatening language before you send it. The AI model runs entirely in the browser.",
+  "scripts": { "build": "bash scripts/netlify-build.sh" },
+  "dependencies": { "@huggingface/transformers": "3.7.6" }
+}
