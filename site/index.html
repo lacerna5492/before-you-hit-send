@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Before You Hit Send</title>
-<meta name="description" content="Check a message for rude, insulting, profane or threatening language before you send it. The AI model runs entirely in your browser.">
+<meta name="description" content="For people who are just being honest. An AI model checks your message for rude, insulting, profane or threatening language before you send it, right in your browser.">
 <style>
 :root {
   --bg: #f4f5f7; --surface: #fff; --ink: #17181c; --muted: #5d6170; --line: #dfe1e6; --chip: #eceef2;
@@ -70,20 +70,20 @@ code { background: var(--chip); padding: 1px 5px; border-radius: 5px; font-size:
 <body>
 <header class="top"><div class="wrap">
   <div class="brand"><span class="logo" aria-hidden="true">✓</span><span>Before You Hit Send</span></div>
-  <span class="badge" id="status" role="status">Loading AI model…</span>
+  <span class="badge" id="status" role="status">Reading the room…</span>
 </div></header>
 
 <main class="wrap">
-  <h1>Check your message before you send it</h1>
-  <p class="lede">Paste an email, text or comment. An AI model reads it and flags anything that could come across as rude, insulting, profane or threatening, sentence by sentence. It runs entirely in your browser: nothing you type leaves your device.</p>
+  <h1>Are you the problem? Find out before they do.</h1>
+  <p class="lede">For people who are "just being honest," "just asking a question" or "didn't mean it like that," and somehow keep getting replies that start with <em>"Wow."</em> Paste your message and an AI model reads it the way everyone else will, flagging anything rude, insulting, profane or threatening, sentence by sentence. It runs entirely in your browser, so nobody ever has to know you checked.</p>
 
   <section class="card">
     <label class="lbl" for="msg">Your message</label>
-    <textarea id="msg" placeholder="Type or paste the message you're about to send…" maxlength="4000"></textarea>
+    <textarea id="msg" placeholder="Paste the message you're 100% sure is fine…" maxlength="4000"></textarea>
     <div class="progress" id="progress" hidden><div id="bar"></div></div>
     <div class="row">
-      <span class="small" id="hint">Checks automatically as you type.</span>
-      <button class="go" id="go" disabled>Check message</button>
+      <span class="small" id="hint">Checks automatically as you type. No judgment. (Okay, some judgment.)</span>
+      <button class="go" id="go" disabled>Check my vibe</button>
     </div>
     <div class="chips" id="examples" aria-label="Example messages"></div>
   </section>
@@ -97,12 +97,12 @@ code { background: var(--chip); padding: 1px 5px; border-radius: 5px; font-size:
       <li><strong>In your browser.</strong> <a href="https://huggingface.co/docs/transformers.js" target="_blank" rel="noopener">transformers.js</a> runs the model with WebAssembly. The model files are part of this site, so after the first load the checker works offline and nothing is sent anywhere.</li>
       <li><strong>Sentence by sentence.</strong> The whole message gets an overall score, and each sentence is scored on its own, so you can see exactly which line to rewrite.</li>
       <li><strong>The verdict.</strong> Below 30% on every category: looks fine. 30–70%: might come across badly. Above 70%: likely to offend.</li>
-      <li><strong>Limits.</strong> It catches rude, insulting, profane, threatening and hateful language. It does not catch politely cold or passive-aggressive tone ("Per my last email…"), and it can flag friendly swearing ("that was damn good").</li>
+      <li><strong>Limits.</strong> It catches rude, insulting, profane, threatening and hateful language. It cannot catch passive-aggression ("Per my last email…", "Noted.", "k."), so you're on your own there. It can also flag friendly swearing ("that was damn good").</li>
     </ol>
   </section>
 </main>
 
-<footer class="wrap foot"><p>Ryan Lacerna · CAI2300C (Dr. Lee) · An AI model that runs in the browser.</p></footer>
+<footer class="wrap foot"><p>Ryan Lacerna · CAI2300C (Dr. Lee) · An AI model that runs in the browser. No messages were sent in the making of this app.</p></footer>
 
 <script type="module" src="app.js"></script>
 </body>

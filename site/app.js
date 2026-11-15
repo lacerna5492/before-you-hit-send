@@ -15,9 +15,9 @@ const WARN = 0.3, BAD = 0.7;
 
 const EXAMPLES = [
   ['Polite request', "Hi Sarah, thanks for sending the report. Could we move our meeting to Thursday afternoon? Let me know what works for you."],
-  ['Frustrated but professional', "I'm disappointed that the order arrived late again. I need this resolved by Friday or I'll have to cancel the account."],
-  ['Heated', "Are you seriously this incompetent? I've explained this three times. Fix it now."],
-  ['Over the line', "You're an idiot and nobody on this team respects you. Shut up and do your job."],
+  ['"I\'m just being direct"', "I'm disappointed that the order arrived late again. I need this resolved by Friday or I'll have to cancel the account."],
+  ['"It\'s called honesty"', "Are you seriously this incompetent? I've explained this three times. Fix it now."],
+  ['"Why is everyone so sensitive?"', "You're an idiot and nobody on this team respects you. Shut up and do your job."],
   ['Veiled threat', "If you do that again I will make sure you regret it."],
   ['Friendly swearing (false alarm?)', "That game last night was damn good, we absolutely killed it!"],
 ];
@@ -58,9 +58,9 @@ async function check() {
 
   const v = level(worst);
   const verdict = {
-    ok: ['Looks good to send', 'No rude, insulting, profane or threatening language found.'],
-    warn: ['Might come across badly', 'Some wording could read as rude. Consider rephrasing the highlighted parts.'],
-    bad: ["Don't send this as written", 'This is likely to offend. Rewrite the highlighted parts before sending.'],
+    ok: ['You\'re good. Genuinely.', 'No rude, insulting, profane or threatening language found. Send it with confidence.'],
+    warn: ['Hmm. This is how the "Wow." replies start.', 'Some wording could read as rude. Your intentions may be pure, but the highlighted parts are what they\'ll remember.'],
+    bad: ['Put the phone down.', 'This will offend people. Rewrite the highlighted parts before you become a screenshot in someone\'s group chat.'],
   }[v];
 
   const flagged = per.filter((p) => Math.max(...Object.values(p.sc)) >= WARN);
@@ -75,7 +75,7 @@ async function check() {
       </div>
     </div>
     ${per.length ? `<div class="card">
-      <label class="lbl">Sentence by sentence${flagged.length ? ` · ${flagged.length} to rewrite` : ''}</label>
+      <label class="lbl">Sentence by sentence${flagged.length ? ` · ${flagged.length} line${flagged.length > 1 ? 's' : ''} they\'ll quote back to you` : ''}</label>
       <ul class="sentences">${per.map(({ s, sc }) => {
         const [k, p] = Object.entries(sc).sort((a, b) => b[1] - a[1])[0];
         const lv = level(p);
@@ -99,11 +99,11 @@ async function init() {
         files.set(p.file, [p.loaded, p.total]);
         let l = 0, t = 0; for (const [a, b] of files.values()) { l += a; t += b; }
         progress.hidden = false; bar.style.width = `${(100 * l / t).toFixed(1)}%`;
-        setStatus(`Loading AI model… ${(l / 1e6).toFixed(0)} of ${(t / 1e6).toFixed(0)} MB`);
+        setStatus(`Reading the room… ${(l / 1e6).toFixed(0)} of ${(t / 1e6).toFixed(0)} MB`);
       },
     });
     progress.hidden = true;
-    setStatus('Ready · runs on your device', 'ready');
+    setStatus('Ready · judging you locally', 'ready');
     go.disabled = false;
     check();
   } catch (err) {
